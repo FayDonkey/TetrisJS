@@ -8,7 +8,7 @@ let coordinateArray = [...Array(gBArrayHeight)].map(e => Array(gBArrayWidth).fil
 let curTetromino = [[1,0], [0,1], [1,1], [2,1]];
 
 let tetrominos = [];
-let tetrominosColor = ['purple', 'cyan', 'blue', 'yellow', 'orange', 'green', 'red'];
+let tetrominoColors = ['purple', 'cyan', 'blue', 'yellow', 'orange', 'green', 'red'];
 let curTetrominoColor;
 
 let gameBoardArray = [...Array(gBArrayHeight)].map(e => Array(gBArrayWidth).fill(0));
@@ -17,7 +17,7 @@ let DIRECTION = {
     IDLE: 0,
     DOWN: 1,
     LEFT: 2,
-    RIGHT: 3,
+    RIGHT: 3
 };
 let direction;
 
@@ -67,7 +67,7 @@ function SetupCanvas(){
 function DrawTetromino(){
     for(let i = 0; i < curTetromino.length; i++){
         let x = curTetromino[i][0] + startX;
-        let y = curTetromino[i][0] + startY;
+        let y = curTetromino[i][1] + startY;
         gameBoardArray[x][y] = 1;
         let coorX = coordinateArray[x][y].x;
         let coorY = coordinateArray[x][y].y;
@@ -77,7 +77,7 @@ function DrawTetromino(){
 }
 
 function HandleKeyPress(key){
-    if(key.keyCode == 65){
+    if(key.keyCode === 65){
         direction = DIRECTION.LEFT;
         DeleteTetromino();
         startX--;
@@ -98,12 +98,12 @@ function HandleKeyPress(key){
 function DeleteTetromino(){
     for(let i = 0; i < curTetromino.length; i++){
         let x = curTetromino[i][0] + startX;
-        let y = curTetromino[i][0] + startY;
+        let y = curTetromino[i][1] + startY;
         gameBoardArray[x][y] = 0;
         let coorX = coordinateArray[x][y].x;
         let coorY = coordinateArray[x][y].y;
         ctx.fillStyle = 'white';
-        ctx.fillRext(coorX, coorY, 21, 21);
+        ctx.fillRect(coorX, coorY, 21, 21);
     }
 }
 
@@ -127,5 +127,5 @@ function CreateTetrominos(){
 function CreateTetromino(){
     let randomTetromino = Math.floor(Math.random() * tetrominos.length);
     curTetromino = tetrominos[randomTetromino];
-    curTetrominoColor = tetrominosColor[randomTetromino];
+    curTetrominoColor = tetrominoColors[randomTetromino];
 }
