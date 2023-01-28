@@ -3,7 +3,7 @@ let ctx;
 let gBArrayHeight = 20;
 let gBArrayWidth = 10;
 let startX = 4;
-let starty = 0;
+let startY = 0;
 let coordinateArray = [...Array(gBArrayHeight)].map(e => Array(gBArrayWidth).fill(0));
 let curTetromino = [[1,0], [0,1], [1,1], [2,1]];
 
@@ -30,7 +30,7 @@ class Coordinates{
 
 document.addEventListener('DOMContentLoaded', SetupCanvas);
 
-function coordinateArray(){
+function CreateCoordArray(){
     let i = 0, j = 0;
     for(let y = 9; y <= 446; y+= 23){
         for(let x = 11; x <= 264; x += 23){
